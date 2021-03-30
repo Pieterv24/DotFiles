@@ -20,6 +20,5 @@
         "appsettings.json",
         "*.env"
     ],
-    "workbench.colorTheme": "Visual Studio Dark",
-    "python.languageServer": "Microsoft"
+    "workbench.colorTheme": "Visual Studio Dark"
 }
