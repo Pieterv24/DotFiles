@@ -1,0 +1,25 @@
+{
+    "editor.fontFamily": "'Ubuntu Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.fontSize": 16,
+    "explorer.openEditors.visible": 0,
+    "editor.renderLineHighlight": "gutter",
+    "workbench.startupEditor": "welcomePage",
+    "window.restoreWindows": "none",
+    "window.titleBarStyle": "native",
+    "workbench.iconTheme": "material-icon-theme",
+    "terminal.integrated.fontFamily": "Noto Mono for Powerline",
+    "discord.detailsDebugging": "Debugging {workspace}",
+    "discord.detailsEditing": "Editing {workspace}",
+    "discord.lowerDetailsEditing": "{null}",
+    "editor.suggestSelection": "first",
+    "git.autofetch": true,
+    "obsSwitcher.sceneName": "SecretFiles",
+    "obsSwitcher.fileNames": [
+        "appsettings.Development.json",
+        "appsettings.Production.json",
+        "appsettings.json",
+        "*.env"
+    ],
+    "workbench.colorTheme": "Visual Studio Dark",
+    "python.languageServer": "Microsoft"
+}

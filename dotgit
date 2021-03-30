@@ -1,0 +1,3 @@
+#!/bin/bash
+
+python3 dotgit-package/dotgit/__main__.py "$@"

@@ -1,0 +1,4 @@
+powerline-daemon -q
+[ -f /usr/share/powerline/bindings/zsh/powerline.zsh ] && . /usr/share/powerline/bindings/zsh/powerline.zsh
+[ -f /home/pieter/.local/lib/python3.8/site-packages/powerline/bindings/zsh/powerline.zsh ] && . /home/pieter/.local/lib/python3.8/site-packages/powerline/bindings/zsh/powerline.zsh
+[ -f /usr/lib/python3/site-packages/powerline/bindings/zsh/powerline.zsh ] && . /usr/lib/python3/site-packages/powerline/bindings/zsh/powerline.zsh

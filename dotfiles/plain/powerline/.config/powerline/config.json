@@ -1,0 +1,15 @@
+{
+    "common": {
+        "term_truecolor": true
+    },
+    "ext": {
+        "shell": {
+            "theme": "custom",
+            "colorscheme": "napster",
+            "local_themes": {
+                "continuation": "continuation",
+                "select": "select"
+            }
+        }
+    }
+}

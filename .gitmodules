@@ -1,0 +1,3 @@
+[submodule "dotgit-package"]
+	path = dotgit-package
+	url = https://github.com/kobus-v-schoor/dotgit

@@ -1,0 +1,52 @@
+# Linux
+HAL9000=hal9000,zsh,powerline,kitty,vscode,config,logid,nvm,git-pieterv24
+Arch-Laptop=arch-laptop,zsh,powerline,kitty,vscode,config,logid
+
+# WSL2
+Hal8999=hal8999,zsh,powerline,git-pieterv24,wsl
+Win-Laptop=win-laptop,zsh,powerline,git-pieterv24,wsl
+
+#HAL9000 (Linux Desktop)
+.zshenv:hal9000
+# .ssh/id_rsa:hal9000|encrypt
+# .ssh/id_rsa.pub:hal9000|encrypt
+
+#Arch-Laptop
+.zshenv:arch-laptop
+# .ssh/id_rsa:arch-laptop|encrypt
+# .ssh/id_rsa.pub:arch-laptop|encrypt
+
+#Hal8999 (Windows Desktop)
+# .ssh/id_ed25519:hal8999|encrypt
+# .ssh/id_ed25519.pub:hal8999|encrypt
+
+#Win-Laptop
+# .ssh/id_ed25519:win-laptop|encrypt
+# .ssh/id_ed25519.pub:win-laptop|encrypt
+
+# Git (Pieterv24)
+.gitconfig:git-pieterv24
+
+# ZSH
+.zshrc:zsh
+.zsh-config/.zshwsl:wsl
+.zsh-config/.zshnvm:nvm
+.zsh-config/.zshpowerline:powerline
+
+# Powerline
+.config/powerline/config.json:powerline
+.config/powerline/themes/shell/custom.json:powerline
+.config/powerline/themes/shell/file.json:powerline
+.config/powerline/colorschemes/napster.json:powerline
+
+# Kitty
+.config/kitty/kitty.conf:kitty
+
+# VSCode
+.config/Code/User/settings.json:vscode
+
+# Misc config
+.config/neofetch/config.conf:config,neofetch
+
+# Logitech Options
+.config/logid.cfg:logid
