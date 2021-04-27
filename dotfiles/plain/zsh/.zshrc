@@ -73,3 +73,4 @@ git() {
 [ -f ~/.zsh-config/.zshpowerline ] && source ~/.zsh-config/.zshpowerline
 [ -f ~/.zsh-config/.zshnvm ] && source ~/.zsh-config/.zshnvm
 [ -f ~/.zsh-config/.zshwsl ] && source ~/.zsh-config/.zshwsl
+[ -f ~/.zsh-config/.zshdotnet ] && source ~/.zsh-config/.zshdotnet

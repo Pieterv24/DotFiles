@@ -8,9 +8,6 @@
     "window.titleBarStyle": "native",
     "workbench.iconTheme": "material-icon-theme",
     "terminal.integrated.fontFamily": "Noto Mono for Powerline",
-    "discord.detailsDebugging": "Debugging {workspace}",
-    "discord.detailsEditing": "Editing {workspace}",
-    "discord.lowerDetailsEditing": "{null}",
     "editor.suggestSelection": "first",
     "git.autofetch": true,
     "obsSwitcher.sceneName": "SecretFiles",
@@ -23,5 +20,13 @@
     "workbench.colorTheme": "Visual Studio Dark",
     "files.associations": {
         "filelist": "shellscript"
-    }
+    },
+    "workbench.editorAssociations": [
+        {
+            "viewType": "jupyter.notebook.ipynb",
+            "filenamePattern": "*.ipynb"
+        }
+    ],
+    "discord.lowerDetailsDebugging": "Debugging: {empty}",
+    "discord.lowerDetailsEditing": "Workspace: {empty}"
 }

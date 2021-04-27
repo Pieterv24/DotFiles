@@ -1,5 +1,5 @@
 # Linux
-HAL9000=hal9000,zsh,powerline,kitty,vscode,config,logid,nvm,git-pieterv24
+HAL9000=hal9000,zsh,powerline,kitty,vscode,config,logid,nvm,git-pieterv24,dotnet
 Arch-Laptop=arch-laptop,zsh,powerline,kitty,vscode,config,logid
 
 # WSL2
@@ -32,6 +32,7 @@ Win-Laptop=win-laptop,zsh,powerline,git-pieterv24,wsl
 .zsh-config/.zshwsl:wsl
 .zsh-config/.zshnvm:nvm
 .zsh-config/.zshpowerline:powerline
+.zsh-config/.zshdotnet:dotnet
 
 # Powerline
 .config/powerline/config.json:powerline
