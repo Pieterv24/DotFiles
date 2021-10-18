@@ -17,16 +17,14 @@
         "appsettings.json",
         "*.env"
     ],
-    "workbench.colorTheme": "Visual Studio Dark",
+    "workbench.colorTheme": "Visual Studio 2019 Dark",
     "files.associations": {
         "filelist": "shellscript"
     },
-    "workbench.editorAssociations": [
-        {
-            "viewType": "jupyter.notebook.ipynb",
-            "filenamePattern": "*.ipynb"
-        }
-    ],
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb"
+    },
     "discord.lowerDetailsDebugging": "Debugging: {empty}",
-    "discord.lowerDetailsEditing": "Workspace: {empty}"
+    "discord.lowerDetailsEditing": "Workspace: {empty}",
+    "auto-build.defaultEnv.name": "melzi_optimized"
 }

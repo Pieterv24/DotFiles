@@ -1,5 +1,7 @@
 [user]
 	email = 9167905+Pieterv24@users.noreply.github.com
-	name = Pieterv24
+	name = Pieter
 [init]
 	defaultBranch = master
+[color]
+	ui = auto

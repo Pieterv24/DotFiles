@@ -56,6 +56,7 @@ fi
 # aliasses
 alias ls='ls --color=auto'
 alias ll='ls -la'
+
 # check if pridecat is installed before registering alias
 command -v pridecat > /dev/null && alias cat='pridecat'
 
