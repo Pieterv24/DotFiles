@@ -56,6 +56,10 @@ fi
 # aliasses
 alias ls='ls --color=auto'
 alias ll='ls -la'
+alias docker=podman
+alias docker-compose=podman-compose
+
+
 
 # check if pridecat is installed before registering alias
 command -v pridecat > /dev/null && alias cat='pridecat'
@@ -75,3 +79,4 @@ git() {
 [ -f ~/.zsh-config/.zshnvm ] && source ~/.zsh-config/.zshnvm
 [ -f ~/.zsh-config/.zshwsl ] && source ~/.zsh-config/.zshwsl
 [ -f ~/.zsh-config/.zshdotnet ] && source ~/.zsh-config/.zshdotnet
+[ -f ~/.zsh-config/.zshcoreos ] && source ~/.zsh-config/.zshcoreos
