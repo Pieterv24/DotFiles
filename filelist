@@ -1,5 +1,5 @@
 # Linux
-HAL9000=hal9000,zsh,powerline,kitty,vscode,config,logid,nvm,git-pieterv24,dotnet,coreos-tools
+HAL9000=hal9000,zsh,powerline,kitty,vscode,config,logid,nvm,git-pieterv24,dotnet,coreos-tools,wayland
 Arch-Laptop=arch-laptop,zsh,powerline,kitty,vscode,config,logid
 
 # WSL2
@@ -8,21 +8,9 @@ Win-Laptop=win-laptop,zsh,powerline,git-pieterv24,wsl
 
 #HAL9000 (Linux Desktop)
 .zshenv:hal9000
-# .ssh/id_rsa:hal9000|encrypt
-# .ssh/id_rsa.pub:hal9000|encrypt
 
 #Arch-Laptop
 .zshenv:arch-laptop
-# .ssh/id_rsa:arch-laptop|encrypt
-# .ssh/id_rsa.pub:arch-laptop|encrypt
-
-#Hal8999 (Windows Desktop)
-# .ssh/id_ed25519:hal8999|encrypt
-# .ssh/id_ed25519.pub:hal8999|encrypt
-
-#Win-Laptop
-# .ssh/id_ed25519:win-laptop|encrypt
-# .ssh/id_ed25519.pub:win-laptop|encrypt
 
 # Git (Pieterv24)
 .gitconfig:git-pieterv24
@@ -34,6 +22,7 @@ Win-Laptop=win-laptop,zsh,powerline,git-pieterv24,wsl
 .zsh-config/.zshpowerline:powerline
 .zsh-config/.zshdotnet:dotnet
 .zsh-config/.zshcoreos:coreos-tools
+.zsh-config/.zshwayland:wayland
 
 # Powerline
 .config/powerline/config.json:powerline

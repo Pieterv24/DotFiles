@@ -80,3 +80,4 @@ git() {
 [ -f ~/.zsh-config/.zshwsl ] && source ~/.zsh-config/.zshwsl
 [ -f ~/.zsh-config/.zshdotnet ] && source ~/.zsh-config/.zshdotnet
 [ -f ~/.zsh-config/.zshcoreos ] && source ~/.zsh-config/.zshcoreos
+[ -f ~/.zsh-config/.zshwayland ] && [ "$XDG_SESSION_TYPE" = "wayland" ] && source ~/.zsh-config/.zshwayland

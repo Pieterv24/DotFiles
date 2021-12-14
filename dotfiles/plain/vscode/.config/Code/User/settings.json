@@ -26,5 +26,11 @@
     },
     "discord.lowerDetailsDebugging": "Debugging: {empty}",
     "discord.lowerDetailsEditing": "Workspace: {empty}",
-    "auto-build.defaultEnv.name": "melzi_optimized"
+    "auto-build.defaultEnv.name": "melzi_optimized",
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    }
 }
