@@ -53,28 +53,7 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 	add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
 fi
 
-# aliasses
-alias ls='ls --color=auto'
-alias ll='ls -la'
-alias docker=podman
-alias docker-compose=podman-compose
-
-
-
-# check if pridecat is installed before registering alias
-command -v pridecat > /dev/null && alias cat='pridecat'
-
-# Fix git mistake I often make
-git() {
- 	if [ $# -gt 0 ] && [ "$1" = "remove" ] ; then
- 		shift
-		echo "it's remote you dunce"
-		command git remote "$@"
-	else
-		command git "$@"
-	fi
-}
-
+[ -f ~/.zsh-config/.zshaliases ] && source ~/.zsh-config/.zshaliases
 [ -f ~/.zsh-config/.zshpowerline ] && source ~/.zsh-config/.zshpowerline
 [ -f ~/.zsh-config/.zshnvm ] && source ~/.zsh-config/.zshnvm
 [ -f ~/.zsh-config/.zshwsl ] && source ~/.zsh-config/.zshwsl
