@@ -10,23 +10,19 @@
     "terminal.integrated.fontFamily": "Noto Mono for Powerline",
     "editor.suggestSelection": "first",
     "git.autofetch": true,
-    "obsSwitcher.sceneName": "SecretFiles",
-    "obsSwitcher.fileNames": [
-        "appsettings.Development.json",
-        "appsettings.Production.json",
-        "appsettings.json",
-        "*.env"
-    ],
-    "workbench.colorTheme": "Visual Studio 2019 Dark",
     "files.associations": {
         "filelist": "shellscript"
     },
-    "workbench.editorAssociations": {
-        "*.ipynb": "jupyter.notebook.ipynb"
-    },
     "discord.lowerDetailsDebugging": "Debugging: {empty}",
     "discord.lowerDetailsEditing": "Workspace: {empty}",
-    "auto-build.defaultEnv.name": "melzi_optimized",
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": true,
+    "[java]": {
+        "editor.suggest.snippetsPreventQuickSuggestions": false,
+        "spotlessGradle.diagnostics.enable": true,
+        "spotlessGradle.format.enable": true
+    },
+    "diffEditor.ignoreTrimWhitespace": false,
     "files.exclude": {
         "**/.classpath": true,
         "**/.project": true,

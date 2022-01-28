@@ -1,7 +1,12 @@
 [user]
 	email = 9167905+Pieterv24@users.noreply.github.com
 	name = Pieter
+	isgingkey = C44AEAD55BC105EB
 [init]
 	defaultBranch = master
 [color]
 	ui = auto
+[pull]
+	rebase = false
+[commit]
+	gpgsign = true
