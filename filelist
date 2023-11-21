@@ -1,6 +1,6 @@
 # Linux
-HAL9000=hal9000,zsh,powerline,kitty,vscode,config,logid,nvm,git-pieterv24,dotnet,coreos-tools,wayland,aliases
-Arch-Laptop=arch-laptop,zsh,powerline,kitty,vscode,config,logid
+HAL9000=hal9000,zsh,powerline,kitty,config,logid,nvm,git-pieterv24,wayland,aliases
+Arch-Laptop=arch-laptop,zsh,powerline,kitty,config,logid
 
 # WSL2
 Hal8999=hal8999,zsh,powerline,git-pieterv24,wsl
@@ -17,13 +17,13 @@ Win-Laptop=win-laptop,zsh,powerline,git-pieterv24,wsl
 
 # ZSH
 .zshrc:zsh
-.zsh-config/.zshaliases:aliases
-.zsh-config/.zshwsl:wsl
-.zsh-config/.zshnvm:nvm
-.zsh-config/.zshpowerline:powerline
-.zsh-config/.zshdotnet:dotnet
-.zsh-config/.zshcoreos:coreos-tools
-.zsh-config/.zshwayland:wayland
+.zsh-config/aliases:aliases
+.zsh-config/wsl:wsl
+.zsh-config/nvm:nvm
+.zsh-config/powerline:powerline
+.zsh-config/dotnet:dotnet
+.zsh-config/wayland:wayland
+.zsh-config/pyenv:pyenv
 
 # Powerline
 .config/powerline/config.json:powerline
@@ -33,9 +33,6 @@ Win-Laptop=win-laptop,zsh,powerline,git-pieterv24,wsl
 
 # Kitty
 .config/kitty/kitty.conf:kitty
-
-# VSCode
-.config/Code/User/settings.json:vscode
 
 # Misc config
 .config/neofetch/config.conf:config,neofetch

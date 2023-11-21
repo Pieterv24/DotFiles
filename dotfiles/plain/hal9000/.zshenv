@@ -7,5 +7,5 @@ export CCACHE_EXEC=/usr/bin/ccache
 export JAVA_HOME=/usr/lib/jvm/default
 
 typeset -U path
-path=(~/.local/bin /var/lib/snapd/snap/bin /opt/depot_tools $path[@])
+path=(~/.local/bin $path[@])
 

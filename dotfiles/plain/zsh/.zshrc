@@ -1,16 +1,14 @@
-# Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 unsetopt beep
 bindkey -e
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
+
 zstyle :compinstall filename '/home/pieter/.zshrc'
 
+fpath+=~/.zfunc
 autoload -Uz compinit
 compinit
-# End of lines added by compinstall
 
 # create a zkbd compatible hash;
 # to add other keys to this hash, see: man 5 terminfo
@@ -53,10 +51,11 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 	add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
 fi
 
-[ -f ~/.zsh-config/.zshaliases ] && source ~/.zsh-config/.zshaliases
-[ -f ~/.zsh-config/.zshpowerline ] && source ~/.zsh-config/.zshpowerline
-[ -f ~/.zsh-config/.zshnvm ] && source ~/.zsh-config/.zshnvm
-[ -f ~/.zsh-config/.zshwsl ] && source ~/.zsh-config/.zshwsl
-[ -f ~/.zsh-config/.zshdotnet ] && source ~/.zsh-config/.zshdotnet
-[ -f ~/.zsh-config/.zshcoreos ] && source ~/.zsh-config/.zshcoreos
-[ -f ~/.zsh-config/.zshwayland ] && [ "$XDG_SESSION_TYPE" = "wayland" ] && source ~/.zsh-config/.zshwayland
+source ~/.local/share/zsh/plugins/zsh-shift-select/zsh-shift-select.plugin.zsh
+
+[ -f ~/.zsh-config/aliases ] && source ~/.zsh-config/aliases
+[ -f ~/.zsh-config/powerline ] && source ~/.zsh-config/powerline
+[ -f ~/.zsh-config/nvm ] && source ~/.zsh-config/nvm
+[ -f ~/.zsh-config/dotnet ] && source ~/.zsh-config/dotnet
+[ -f ~/.zsh-config/pyenv ] && source ~/.zsh-config/pyenv
+[ -f ~/.zsh-config/wayland ] && [ "$XDG_SESSION_TYPE" = "wayland" ] && source ~/.zsh-config/wayland
