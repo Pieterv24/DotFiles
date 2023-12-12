@@ -1,5 +1,5 @@
 # Linux
-HAL9000=hal9000,zsh,powerline,kitty,config,logid,nvm,git-pieterv24,wayland,aliases
+HAL9000=hal9000,zsh,powerline-go,kitty,config,logid,nvm,git-pieterv24,wayland,aliases,tools
 Arch-Laptop=arch-laptop,zsh,powerline,kitty,config,logid
 
 # WSL2
@@ -25,6 +25,10 @@ Win-Laptop=win-laptop,zsh,powerline,git-pieterv24,wsl
 .zsh-config/wayland:wayland
 .zsh-config/pyenv:pyenv
 
+# Powerline-go
+.zsh-config/powerline-go:powerline-go
+.config/powerline-go/config.json:powerline-go
+
 # Powerline
 .config/powerline/config.json:powerline
 .config/powerline/themes/shell/custom.json:powerline
@@ -39,3 +43,6 @@ Win-Laptop=win-laptop,zsh,powerline,git-pieterv24,wsl
 
 # Logitech Options
 .config/logid.cfg:logid
+
+# Tools
+.tools/palette.bash:tools

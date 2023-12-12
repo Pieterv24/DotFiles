@@ -55,7 +55,11 @@ source ~/.local/share/zsh/plugins/zsh-shift-select/zsh-shift-select.plugin.zsh
 
 [ -f ~/.zsh-config/aliases ] && source ~/.zsh-config/aliases
 [ -f ~/.zsh-config/powerline ] && source ~/.zsh-config/powerline
+[ -f ~/.zsh-config/powerline-go ] && source ~/.zsh-config/powerline-go
 [ -f ~/.zsh-config/nvm ] && source ~/.zsh-config/nvm
 [ -f ~/.zsh-config/dotnet ] && source ~/.zsh-config/dotnet
 [ -f ~/.zsh-config/pyenv ] && source ~/.zsh-config/pyenv
+[ -f ~/.zsh-config/darkmode ] && source ~/.zsh-config/darkmode
 [ -f ~/.zsh-config/wayland ] && [ "$XDG_SESSION_TYPE" = "wayland" ] && source ~/.zsh-config/wayland
+
+# eval "$(starship init zsh)"

@@ -2,8 +2,15 @@
 alias ls='ls --color=auto'
 alias ll='ls -la'
 
-# check if pridecat is installed before registering alias
-command -v pridecat > /dev/null && alias cat='pridecat'
+alias grep='grep --color=auto'
+alias ip='ip -color=auto'
+
+# Kitty kittens
+alias icat="kitten icat"
+alias d="kitten diff"
+alias hg="kitten hyperlinked_grep"
+alias s="kitten ssh"
+
 
 # Fix git mistake I often make
 git() {
@@ -14,4 +21,16 @@ git() {
 	else
 		command git "$@"
 	fi
+}
+
+colors() {
+	for x in {0..8}; do 
+    for i in {30..37}; do 
+			for a in {40..47}; do 
+				echo -ne "\e[$x;$i;$a""m\\\e[$x;$i;$a""m\e[0;37;40m "
+			done
+			echo
+    done
+	done
+	echo ""
 }
