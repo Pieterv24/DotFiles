@@ -4,7 +4,7 @@
     "cwd-max-depth": 1,
     "eval": true,
     "git-disable-stats": ["staged", "notStaged", "untracked", "stashed"],
-    "modules": ["better-cwd", "newline", "ssh", "user", "cwd", "perms"],
+    "modules": ["ssh", "user", "cwd", "perms"],
     "modules-right": ["git", "venv", "duration"],
     "numeric-exit-codes": false,
     "colorize-hostname": true,
