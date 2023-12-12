@@ -12,5 +12,3 @@
 	gpgsign = true
 [gpg]
 	program = gpg2
-[safe]
-	directory = /opt/flutter
