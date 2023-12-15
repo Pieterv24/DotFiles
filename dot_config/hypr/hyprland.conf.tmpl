@@ -7,6 +7,7 @@
 # For a full list, see the wiki
 #
 
+{{ if .nvidia -}}
 # NVIDIA Settings
 # See https://wiki.hyprland.org/Nvidia/
 env = LIBVA_DRIVER_NAME,nvidia
@@ -28,7 +29,7 @@ env = QT_AUTO_SCREEN_SCALE_FACTOR,1
 env = QT_QPA_PLATFORM,wayland;xcb
 env = QT_WAYLAND_DISABLE_WINDOWDECORATION,1
 env = QT_QPA_PLATFORMTHEME,qt5ct
-
+{{- end }}
 
 # See https://wiki.hyprland.org/Configuring/Monitors/
 monitor=,preferred,auto,auto
