@@ -1,15 +1,9 @@
-# This is an example Hyprland config file.
-#
-# Refer to the wiki for more information.
+###########################################
+## NVIDIA Settings                       ##
+## See https://wiki.hyprland.org/Nvidia/ ##
+###########################################
 
-#
-# Please note not all available settings / options are set here.
-# For a full list, see the wiki
-#
-
-{{ if .nvidia -}}
-# NVIDIA Settings
-# See https://wiki.hyprland.org/Nvidia/
+{{- if .nvidia }}
 env = LIBVA_DRIVER_NAME,nvidia
 env = XDG_SESSION_TYPE,wayland
 env = GBM_BACKEND,nvidia-drm
@@ -31,65 +25,65 @@ env = QT_WAYLAND_DISABLE_WINDOWDECORATION,1
 env = QT_QPA_PLATFORMTHEME,qt5ct
 {{- end }}
 
-# See https://wiki.hyprland.org/Configuring/Monitors/
-monitor=,preferred,auto,auto
+###################
+## Load plugins  ##
+###################
 
-# Set programs that you use
-$terminal = kitty
-$fileManager = nemo
-$menu = wofi --show drun
+# plugin = /usr/lib/libhy3.so
+# plugin = /home/pieter/.local/share/hyprpm/hy3/hy3.so
 
-# See https://wiki.hyprland.org/Configuring/Keywords/ for more
+###############################
+## Startup Apps and Services ##
+###############################
 
-exec-once=/usr/bin/dbus-update-activation-environment --systemd --all
+exec-once = /usr/bin/dbus-update-activation-environment --systemd --all
+exec-once = systemctl import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec-once = /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+exec-once = /usr/bin/gnome-keyring-daemon --start --components=secrets,pkcs11 &
 
-# Authentication dialog (polkik)
-exec-once=/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+############
+## Waybar ##
+############
 
-# Gnome keyring
-exec-once=/usr/bin/gnome-keyring-daemon --start --components=secrets,pkcs11
+exec-once=/home/pieter/.config/hypr/scripts/launchWaybar.sh &
 
-# Dunst
+################
+## Misc Setup ##
+################
+
+exec-once=swww init
+exec-once=wl-clip-persist --clipboard both &
 exec-once=systemctl start --user dunst.service
 
-# Clipboard configuration
-exec-once=wl-clip-persist --clipboard both
+########################
+## Autostart programs ##
+########################
 
-# Load plugins
-exec-once=hyprpm reload -n
-exec-once=hyprctl reload
-
-# Waybar
-exec-once=/home/pieter/.config/hypr/scripts/launchWaybar.sh
-
-# Autostart programs
 exec-once=/opt/vivaldi/vivaldi "--profile-directory=Profile 1" --app-id=abpncgodleipdaicenfnapiingkabpdd
 exec-once=webcord
 exec-once=easyeffects --gapplication-service
 
-plugin {
-  hy3 {
-    # Docs: https://github.com/outfoxxed/hy3#configuration
-    autotile {
-      enable = true # default: false
+##############
+## Monitors ##
+##############
 
-      # if a window would be squished smaller than this width, a vertical split will be created
-      # -1 = never automatically split vertically
-      # 0 = always automatically split vertically
-      # <number> = pixel height to split at
-      trigger_width = 800 # default: 0
+monitor=,preferred,auto,auto
 
-      # if a window would be squished smaller than this height, a horizontal split will be created
-      # -1 = never automatically split horizontally
-      # 0 = always automatically split horizontally
-      # <number> = pixel height to split at
-      trigger_height = 0 # default: 0
-    }
-  }
-}
+####################
+## Program config ##
+####################
+
+$mainMod = ALT
+$terminal = kitty
+$fileManager = nemo
+$menu = wofi --show drun
+
+##############
+## Settings ##
+##############
 
 debug {
-  disable_logs = true
+  disable_logs = false
 }
 
 # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
@@ -159,18 +153,24 @@ misc {
     force_default_wallpaper = -1 # Set to 0 to disable the anime mascot wallpapers
 }
 
-# See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
-windowrulev2 = nomaximizerequest, class:.* # You'll probably like this.
+plugin {
+  hy3 {
+    # Docs: https://github.com/outfoxxed/hy3#configuration
+    autotile {
+      enable = true         # default: false
+      trigger_width = 800   # default: 0
+      trigger_height = 0    # default: 0
+    }
+  }
+}
 
-windowrulev2 = workspace 5,class:(vivaldi-abpncgodleipdaicenfnapiingkabpdd-Profile_1)
-windowrulev2 = workspace 5,class:(WebCord)
-
-# See https://wiki.hyprland.org/Configuring/Keywords/ for more
-$mainMod = ALT
+##############
+## Keybinds ##
+##############
 
 # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
 bind = $mainMod, return, exec, $terminal
-bind = $mainMod, C, killactive,
+bind = $mainMod SHIFT, W, killactive,
 bind = $mainMod, M, exec, nwg-bar
 bind = $mainMod, E, exec, $fileManager
 # bind = $mainMod, V, togglefloating,
@@ -197,9 +197,6 @@ bindn = , mouse:272, hy3:focustab, mouse
 bind = $mainMod, Z, hy3:changegroup, opposite
 bind = $mainMod, H, hy3:makegroup, h, ephemeral
 bind = $mainMod, V, hy3:makegroup, v, ephemeral
-
-# Debug stuff
-# bind = $mainMod SHIFT, L, hy3:debugnodes
 
 # Switch workspaces with mainMod + [0-9]
 bind = $mainMod, 1, workspace, 1
@@ -246,6 +243,15 @@ bind = , XF86AudioPlay, exec, playerctl play-pause
 bind = , XF86AudioPause, exec, playerctl play-pause
 bind = , XF86AudioNext, exec, playerctl next
 bind = , XF86AudioPrev, exec, playerctl previous
+
+##################
+## Window rules ##
+##################
+
+windowrulev2 = nomaximizerequest, class:.* # You'll probably like this.
+
+windowrulev2 = workspace 5,class:(vivaldi-abpncgodleipdaicenfnapiingkabpdd-Profile_1)
+windowrulev2 = workspace 5,class:(WebCord)
 
 windowrulev2 = opacity 0.0 override 0.0 override,class:^(xwaylandvideobridge)$
 windowrulev2 = noanim,class:^(xwaylandvideobridge)$
