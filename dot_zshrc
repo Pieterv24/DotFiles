@@ -4,11 +4,11 @@ SAVEHIST=1000
 unsetopt beep
 bindkey -e
 
-zstyle :compinstall filename '/home/pieter/.zshrc'
-
 fpath+=~/.zfunc
 autoload -Uz compinit
 compinit
+
+zstyle :compinstall filename '/home/pieter/.zshrc'
 
 # create a zkbd compatible hash;
 # to add other keys to this hash, see: man 5 terminfo
@@ -51,15 +51,8 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 	add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
 fi
 
-source ~/.local/share/zsh/plugins/zsh-shift-select/zsh-shift-select.plugin.zsh
-
 [ -f ~/.zsh-config/aliases ] && source ~/.zsh-config/aliases
-[ -f ~/.zsh-config/powerline ] && source ~/.zsh-config/powerline
 [ -f ~/.zsh-config/powerline-go ] && source ~/.zsh-config/powerline-go
 [ -f ~/.zsh-config/nvm ] && source ~/.zsh-config/nvm
-[ -f ~/.zsh-config/dotnet ] && source ~/.zsh-config/dotnet
-[ -f ~/.zsh-config/pyenv ] && source ~/.zsh-config/pyenv
 [ -f ~/.zsh-config/darkmode ] && source ~/.zsh-config/darkmode
 [ -f ~/.zsh-config/wayland ] && [ "$XDG_SESSION_TYPE" = "wayland" ] && source ~/.zsh-config/wayland
-
-# eval "$(starship init zsh)"

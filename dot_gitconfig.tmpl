@@ -1,14 +1,18 @@
 [user]
 	email = 9167905+Pieterv24@users.noreply.github.com
 	name = Pieter
+{{ if .gitSigning -}}
 	signingkey = C44AEAD55BC105EB
+{{- end }}
 [init]
 	defaultBranch = master
 [color]
 	ui = auto
 [pull]
 	rebase = false
+{{ if .gitSigning -}}
 [commit]
 	gpgsign = true
 [gpg]
 	program = gpg2
+{{- end }}
