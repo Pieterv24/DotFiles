@@ -1,0 +1,6 @@
+{
+    "device": "alsa_output.usb-MOTU_M2_M20000028625-00.Direct__hw_M2__sink",
+    "device-description": "M Series Direct M2",
+    "device-profile": "[Out] Direct",
+    "preset-name": "Sennheiser HD660S"
+}
