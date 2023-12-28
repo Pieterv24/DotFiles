@@ -9,6 +9,7 @@ env = XDG_SESSION_TYPE,wayland
 env = GBM_BACKEND,nvidia-drm
 env = __GLX_VENDOR_LIBRARY_NAME,nvidia
 env = WLR_NO_HARDWARE_CURSORS,1
+{{- end }}
 
 env = GDK_BACKEND,wayland,x11
 env = QT_QPA_PLATFORM,"wayland;xcb"
@@ -23,48 +24,51 @@ env = QT_AUTO_SCREEN_SCALE_FACTOR,1
 env = QT_QPA_PLATFORM,wayland;xcb
 env = QT_WAYLAND_DISABLE_WINDOWDECORATION,1
 env = QT_QPA_PLATFORMTHEME,qt5ct
-{{- end }}
-
-###################
-## Load plugins  ##
-###################
-
-# plugin = /usr/lib/libhy3.so
-# plugin = /home/pieter/.local/share/hyprpm/hy3/hy3.so
-# plugin = /home/pieter/Projects/Hyprland-Src/hy3/build/libhy3.so
 
 ###############################
 ## Startup Apps and Services ##
 ###############################
 
+# Reload plugins and send notification if something goes wrong
 exec-once = hyprpm reload -n
 
+# Update dbus environment
 exec-once = /usr/bin/dbus-update-activation-environment --systemd --all
+# Import enviroment variables
 exec-once = systemctl import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-exec-once = /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-exec-once = /usr/bin/gnome-keyring-daemon --start --components=secrets,pkcs11 &
+# Load polkit
+exec-once = /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+# Start keyring deamon
+exec-once = /usr/bin/gnome-keyring-daemon --start --components=secrets,pkcs11
 
 ############
 ## Waybar ##
 ############
 
-exec-once=/home/pieter/.config/hypr/scripts/launchWaybar.sh &
+# Launch waybar
+exec-once=/home/pieter/.config/hypr/scripts/launchWaybar.sh
 
 ################
 ## Misc Setup ##
 ################
 
+# Init wallpaper
 exec-once=swww init
 exec-once=swww img ~/.local/share/wallhaven/background.jpg
-exec-once=wl-clip-persist --clipboard both &
+# Setup clipboard
+exec-once=wl-clip-persist --clipboard both
+# Start notification daemon
 exec-once=systemctl start --user dunst.service
 
 ########################
 ## Autostart programs ##
 ########################
 
+# Start Element (Firefox PWA)
 exec-once=/usr/bin/firefoxpwa site launch 01HJGBRWP9M8NNA40EDFP5SXKK --protocol
+# Start Webcord
 exec-once=webcord
+# Start easyeffect in the background
 exec-once=easyeffects --gapplication-service
 
 ##############
@@ -79,7 +83,7 @@ monitor=,preferred,auto,auto
 
 $mainMod = ALT
 $terminal = kitty
-$fileManager = nemo
+$fileManager = thunar
 $menu = wofi --show drun
 
 ##############
@@ -154,7 +158,6 @@ animations {
 
 misc {
     # See https://wiki.hyprland.org/Configuring/Variables/ for more
-    force_default_wallpaper = -1 # Set to 0 to disable the anime mascot wallpapers
 }
 
 plugin {
