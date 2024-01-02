@@ -55,10 +55,14 @@ exec-once=/home/pieter/.config/hypr/scripts/launchWaybar.sh
 # Init wallpaper
 exec-once=swww init
 exec-once=swww img ~/.local/share/wallhaven/background.jpg
-# Setup clipboard
-exec-once=wl-clip-persist --clipboard both
 # Start notification daemon
 exec-once=systemctl start --user dunst.service
+
+# Setup clipboard
+# exec-once=wl-paste --type text --watch cliphist store #Stores only text data
+# exec-once=wl-paste --type image --watch cliphist store #Stores only image data
+exec-once=wl-clip-persist --clipboard both
+
 
 ########################
 ## Autostart programs ##
@@ -240,6 +244,10 @@ bind = $mainMod SHIFT, S, movetoworkspace, special:magic
 bind = $mainMod, mouse_down, workspace, e+1
 bind = $mainMod, mouse_up, workspace, e-1
 
+# Scroll through existing workspaces with middle L/R action
+bind = , mouse_right, workspace, e+1
+bind = , mouse_left, workspace, e-1
+
 # Move/resize windows with mainMod + LMB/RMB and dragging
 bindm = $mainMod, mouse:272, movewindow
 bindm = $mainMod, mouse:273, resizewindow
@@ -253,6 +261,9 @@ bind = , XF86AudioPlay, exec, playerctl play-pause
 bind = , XF86AudioPause, exec, playerctl play-pause
 bind = , XF86AudioNext, exec, playerctl next
 bind = , XF86AudioPrev, exec, playerctl previous
+
+# Clipboard keybinds
+# bind = SUPER, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy
 
 ##################
 ## Window rules ##
