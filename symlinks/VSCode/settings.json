@@ -7,6 +7,7 @@
 
     // Terminal Settings
     "terminal.integrated.fontFamily": "'Cascadia Mono PL', 'Symbols Nerd Font Mono', 'monospace', monospace",
+    "terminal.integrated.enableImages": true,
     
     // Editor Settings
     "editor.fontFamily": "'Cascadia Mono', 'Symbols Nerd Font Mono', 'monospace', monospace",
@@ -27,12 +28,38 @@
     // Git Settings
     "git.enableCommitSigning": true,
     "git.mergeEditor": true,
+    "git.autofetch": true,
+    "git.openRepositoryInParentFolders": "never",
 
     // Diff Editor
     "diffEditor.codeLens": true,
+    "diffEditor.ignoreTrimWhitespace": false,
 
     // Telemetry settings
     "telemetry.telemetryLevel": "crash",
+
+    // #######################
+    // #### File Settings ####
+    // #######################
+    "files.associations": {
+        "**/.i3/config": "i3",
+        "**/i3/config": "i3",
+        "*.ini.tmpl": "ini",
+        "*.toml.tmpl": "toml"
+    },
+
+    "files.exclude": {
+		"**/.git": false,
+        "**/.classpath": true,
+        "**/.factorypath": true,
+        "**/.project": true,
+        "**/.settings": true
+    },
+
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+
 
     // ############################
     // #### Extension Settings ####
