@@ -7,5 +7,5 @@ hyprctl --batch "$HYPRCMDS" >> /tmp/hypr/hyprexitwithgrace.log 2>&1
 hyprctl dispatch exit >> /tmp/hypr/hyprexitwithgrace.log 2>&1
 
 # Kill user account
-loginctl kill-user $(whoami) >> /tmp/hypr/hyprexitwithgrace.log
+# loginctl kill-user $(whoami) >> /tmp/hypr/hyprexitwithgrace.log
 

@@ -29,8 +29,10 @@ env = QT_QPA_PLATFORMTHEME,qt5ct
 ## Startup Apps and Services ##
 ###############################
 
+plugin = /usr/lib/libhy3.so
+
 # Reload plugins and send notification if something goes wrong
-exec-once = hyprpm reload -n
+# exec-once = hyprpm reload -n
 
 # Update dbus environment
 exec-once = /usr/bin/dbus-update-activation-environment --systemd --all
@@ -73,7 +75,7 @@ exec-once = wl-clip-persist --clipboard both
 ########################
 
 # Start Element (Firefox PWA)
-exec-once = [workspace 3 silent] /usr/bin/firefoxpwa site launch 01HJGBRWP9M8NNA40EDFP5SXKK --protocol
+exec-once = /usr/bin/firefoxpwa site launch 01HKNDZZG2KY9PKAWA0XBWZ0WJ
 # Start Webcord
 exec-once = [workspace 3 silent] webcord
 # Start easyeffect in the background
@@ -275,6 +277,9 @@ bind = , XF86AudioPrev, exec, playerctl previous
 windowrulev2 = nomaximizerequest, class:.* # You'll probably like this.
 
 windowrulev2 = workspace 10,class:(steam_app*)
+
+# Move Element to workspace 3
+windowrulev2 = workspace 3 silent, class:(FFPWA-01HKNDZZG2KY9PKAWA0XBWZ0WJ)
 
 # Hide xwaylandvideobridge windows
 windowrulev2 = opacity 0.0 override 0.0 override,class:^(xwaylandvideobridge)$
