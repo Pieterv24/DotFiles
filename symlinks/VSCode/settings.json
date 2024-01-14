@@ -6,7 +6,7 @@
     "window.restoreWindows": "none",
 
     // Terminal Settings
-    "terminal.integrated.fontFamily": "'Cascadia Mono PL', 'Symbols Nerd Font Mono', 'monospace', monospace",
+    "terminal.integrated.fontFamily": "'Cascadia Mono', 'Symbols Nerd Font Mono', 'monospace', monospace",
     "terminal.integrated.enableImages": true,
     
     // Editor Settings

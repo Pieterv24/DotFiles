@@ -29,10 +29,8 @@ env = QT_QPA_PLATFORMTHEME,qt5ct
 ## Startup Apps and Services ##
 ###############################
 
-plugin = /usr/lib/libhy3.so
-
 # Reload plugins and send notification if something goes wrong
-# exec-once = hyprpm reload -n
+exec-once = hyprpm reload -n
 
 # Update dbus environment
 exec-once = /usr/bin/dbus-update-activation-environment --systemd --all
@@ -107,7 +105,7 @@ debug {
 # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
 input {
     kb_layout = us
-    kb_variant = intl
+    # kb_variant = intl
     
     numlock_by_default = true
 

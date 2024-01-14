@@ -1,20 +1,35 @@
 {
-    "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 40, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
-    "spacing": 4, // Gaps between modules (4px)
+    "layer": "top",
+    "position": "top",
+
     // Choose the order of the modules
-    "modules-left": ["hyprland/workspaces", "custom/media"],
-    "modules-center": [],
-    "modules-right": ["privacy", "idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "temperature", "keyboard-state", "clock", "tray"],
+    "modules-left": [
+        "hyprland/workspaces",
+        "custom/playerctl#backward",
+        "custom/playerctl#play",
+        "custom/playerctl#forward",
+        "custom/now_playing"
+    ],
+    "modules-center": [
+    ],
+    "modules-right": [
+        "tray",
+        "cpu",
+        "memory",
+        "disk",
+        "pulseaudio",
+        "network",
+        "clock"
+    ],
+
     // Modules configuration
     "hyprland/workspaces": {
-        "format": "{icon}",
+        "format": "{name}",
         "on-scroll-up": "hyprctl dispatch workspace e+1",
         "on-scroll-down": "hyprctl dispatch workspace e-1",
         "on-click": "activate"
     },
+
     "keyboard-state": {
         "numlock": true,
         "capslock": true,
@@ -24,6 +39,7 @@
             "unlocked": ""
         }
     },
+
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
@@ -31,60 +47,71 @@
             "deactivated": ""
         }
     },
+
     "tray": {
-        // "icon-size": 21,
-        "spacing": 10
+        "icon-size": 20,
+        "spacing": 8
     },
+
     "clock": {
-        "format": "{:%d %b %Y - (%R)} \uf017 ",
+        // "format": "{:%d %b %Y - (%R)} \uf017 ",
         "timezone": "Europe/Amsterdam",
+        // "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        // "format-alt": "{:%H:%M} \uf017 "
+        "format": " {:%H:%M}",
+        "tooltip": "true",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%H:%M} \uf017 "
+        "format-alt": " {:%d/%m}"
     },
+
     "cpu": {
-        "format": "{usage}% ",
-        "tooltip": false
+        // "format": "{usage}% ",
+        // "tooltip": false
+        "format": "\uf4bc  {usage}%",
+        "format-alt": "\uf4bc  {avg_frequency} GHz",
+        "interval": 2
     },
+
     "memory": {
-        "format": "{}% "
+        // "format": "{}% "
+        "format": "󰟜 {}%",
+        "format-alt": "󰟜 {used} GiB",
+        "interval": 2
     },
-    "temperature": {
-        // "thermal-zone": 2,
-        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-        "critical-threshold": 80,
-        // "format-critical": "{temperatureC}°C {icon}",
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
+
+    "disk": {
+        "format": "󰋊 {percentage_used}%",
+        "interval": 60
     },
+
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
+        "format-wifi": "  {essid} ({signalStrength}%)",
+        "format-ethernet": " {ipaddr}",
+        "tooltip-format": " {ifname} via {gwaddr}",
+        "format-linked": " {ifname} (No IP)",
+        "format-disconnected": "⚠ Disconnected",
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
+
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
+        "format": "{icon} {volume}%",
+        "format-muted": "󰖁",
         "format-source": "{volume}% ",
         "format-source-muted": "",
         "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
+            "default": [
+                "",
+                "",
+                ""
+            ]
         },
-        "on-click": "pavucontrol"
+        "on-click": "pavucontrol",
+        "scroll-step": 5
     },
-    "custom/media": {
+    
+    "custom/now_playing": {
         "format": "{icon} {}",
         "return-type": "json",
         "max-length": 40,
@@ -95,6 +122,36 @@
         "escape": true,
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
     },
+
+    "custom/playerctl#backward": {
+        "format": "󰙣 ",
+        "on-click": "playerctl previous",
+        "on-scroll-up": "playerctl volume .05+",
+        "on-scroll-down": "playerctl volume .05-",
+        "tooltip": false
+    },
+    "custom/playerctl#play": {
+        "format": "{icon}",
+        "return-type": "json",
+        "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+        "on-click": "playerctl play-pause",
+        "on-scroll-up": "playerctl volume .05+",
+        "on-scroll-down": "playerctl volume .05-",
+        "format-icons": {
+            "Playing": "<span>󰏥 </span>",
+            "Paused": "<span> </span>",
+            "Stopped": "<span> </span>"
+        },
+        "tooltip": false
+    },
+    "custom/playerctl#forward": {
+        "format": "󰙡 ",
+        "on-click": "playerctl next",
+        "on-scroll-up": "playerctl volume .05+",
+        "on-scroll-down": "playerctl volume .05-",
+        "tooltip": false
+    },
+
     "privacy": {
         "icon-spacing": 8,
         "icon-size": 18,
@@ -118,4 +175,3 @@
         ]
     }
 }
-
