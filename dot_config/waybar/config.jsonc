@@ -13,12 +13,12 @@
     "modules-center": [
     ],
     "modules-right": [
-        "tray",
         "cpu",
         "memory",
         "disk",
         "pulseaudio",
         "network",
+        "tray",
         "clock"
     ],
 
@@ -37,14 +37,6 @@
         "format-icons": {
             "locked": "",
             "unlocked": ""
-        }
-    },
-
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
         }
     },
 
@@ -86,8 +78,8 @@
 
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "  {essid} ({signalStrength}%)",
-        "format-ethernet": " {ipaddr}",
+        "format-wifi": "  {signalStrength}%",
+        "format-ethernet": "",
         "tooltip-format": " {ifname} via {gwaddr}",
         "format-linked": " {ifname} (No IP)",
         "format-disconnected": "⚠ Disconnected",
@@ -109,47 +101,6 @@
         },
         "on-click": "pavucontrol",
         "scroll-step": 5
-    },
-    
-    "custom/now_playing": {
-        "format": "{icon} {}",
-        "return-type": "json",
-        "max-length": 40,
-        "format-icons": {
-            "spotify": "",
-            "default": "🎜"
-        },
-        "escape": true,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-    },
-
-    "custom/playerctl#backward": {
-        "format": "󰙣 ",
-        "on-click": "playerctl previous",
-        "on-scroll-up": "playerctl volume .05+",
-        "on-scroll-down": "playerctl volume .05-",
-        "tooltip": false
-    },
-    "custom/playerctl#play": {
-        "format": "{icon}",
-        "return-type": "json",
-        "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
-        "on-click": "playerctl play-pause",
-        "on-scroll-up": "playerctl volume .05+",
-        "on-scroll-down": "playerctl volume .05-",
-        "format-icons": {
-            "Playing": "<span>󰏥 </span>",
-            "Paused": "<span> </span>",
-            "Stopped": "<span> </span>"
-        },
-        "tooltip": false
-    },
-    "custom/playerctl#forward": {
-        "format": "󰙡 ",
-        "on-click": "playerctl next",
-        "on-scroll-up": "playerctl volume .05+",
-        "on-scroll-down": "playerctl volume .05-",
-        "tooltip": false
     },
 
     "privacy": {
@@ -173,5 +124,46 @@
                 "tooltip-icon-size": 24
             }
         ]
+    },
+    
+    "custom/now_playing": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": "",
+            "default": "🎜"
+        },
+        "escape": true,
+        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+    },
+
+    "custom/playerctl#backward": {
+        "format": "󰙣 ",
+        "on-click": "playerctl previous",
+        "on-scroll-up": "playerctl volume .05+",
+        "on-scroll-down": "playerctl volume .05-",
+        "tooltip": true
+    },
+    "custom/playerctl#play": {
+        "format": "{icon} ",
+        "return-type": "json",
+        "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+        "on-click": "playerctl play-pause",
+        "on-scroll-up": "playerctl volume .05+",
+        "on-scroll-down": "playerctl volume .05-",
+        "format-icons": {
+            "Playing": "󰏥",
+            "Paused": "",
+            "Stopped": ""
+        },
+        "tooltip": true
+    },
+    "custom/playerctl#forward": {
+        "format": "󰙡 ",
+        "on-click": "playerctl next",
+        "on-scroll-up": "playerctl volume .05+",
+        "on-scroll-down": "playerctl volume .05-",
+        "tooltip": true
     }
 }
