@@ -33,6 +33,7 @@ window#waybar {
 #disk,
 #workspaces,
 #clock,
+#privacy,
 #custom-now_playing,
 #custom-playerctl.backward,
 #custom-playerctl.play,
@@ -45,7 +46,7 @@ window#waybar {
 }
 
 #workspaces {
-    margin-left: 5px;
+    margin-left: 7px;
     padding: 8px 12px;
     border-radius: 10px 10px 24px 10px;
 }
@@ -74,6 +75,12 @@ window#waybar {
     border-radius: 15px;
     min-width: 35px;
     text-shadow: none;
+}
+
+#privacy {
+    border-radius: 10px 24px 10px 24px;
+    padding: 0 20px;
+    margin-left: 7px;
 }
 
 #cpu {
@@ -116,7 +123,8 @@ window#waybar {
 
 #clock {
     border-radius: 10px 10px 10px 24px;
-    margin-right: 5px;
+    margin-right: 7px;
+    margin-left: 7px;
     padding: 8px 12px;
 }
 
