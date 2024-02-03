@@ -30,7 +30,8 @@ env = QT_QPA_PLATFORMTHEME,qt5ct
 ###############################
 
 # Reload plugins and send notification if something goes wrong
-exec-once = hyprpm reload -n
+# exec-once = hyprpm reload -n
+plugin = /usr/lib/libhy3.so
 
 # Update dbus environment
 exec-once = /usr/bin/dbus-update-activation-environment --systemd --all
@@ -224,6 +225,7 @@ bind = $mainMod, 8, workspace, 8
 bind = $mainMod, 9, workspace, 9
 bind = $mainMod, 0, workspace, 10
 
+# Move through existing workspaces with SUPER + L/R
 bind = SUPER, left, workspace, -1
 bind = SUPER, right, workspace, +1
 

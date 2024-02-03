@@ -10,6 +10,7 @@ alias icat="kitten icat"
 alias d="kitten diff"
 alias hg="kitten hyperlinked_grep"
 alias s="kitten ssh"
+alias paru="yay"
 
 
 # Fix git mistake I often make

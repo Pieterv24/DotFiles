@@ -34,6 +34,7 @@ window#waybar {
 #workspaces,
 #clock,
 #privacy,
+#cava,
 #custom-now_playing,
 #custom-playerctl.backward,
 #custom-playerctl.play,
@@ -105,6 +106,12 @@ window#waybar {
 #tray {
     border-radius: 10px 24px 10px 24px;
     padding: 0 20px;
+    margin-left: 7px;
+}
+
+#cava {
+    border-radius: 10px 24px 10px 24px;
+    padding: 4px 16px;
     margin-left: 7px;
 }
 
