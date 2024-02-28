@@ -21,6 +21,7 @@
         "pulseaudio",
         "network",
         "tray",
+        "clock#date",
         "clock"
     ],
     // Modules configuration
@@ -77,7 +78,18 @@
         "format": " {:%H:%M}",
         "tooltip": "true",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": " {:%d/%m}"
+        // "format-alt": " {:%d/%m}"
+    },
+
+    "clock#date": {
+        // "format": "{:%d %b %Y - (%R)} \uf017 ",
+        "timezone": "Europe/Amsterdam",
+        // "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        // "format-alt": "{:%H:%M} \uf017 "
+        "format": " {:%d/%m}",
+        "tooltip": "true",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        // "format-alt": " {:%d/%m}"
     },
 
     "cpu": {

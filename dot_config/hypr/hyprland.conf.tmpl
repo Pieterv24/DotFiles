@@ -30,8 +30,8 @@ env = QT_QPA_PLATFORMTHEME,qt5ct
 ###############################
 
 # Reload plugins and send notification if something goes wrong
-# exec-once = hyprpm reload -n
-plugin = /usr/lib/libhy3.so
+exec-once = hyprpm reload -n
+# plugin = /usr/lib/libhy3.so
 
 # Update dbus environment
 exec-once = /usr/bin/dbus-update-activation-environment --systemd --all
@@ -40,7 +40,8 @@ exec-once = systemctl import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 # Import environment variables
 exec-once = systemctl --user import-environment QT_QPA_PLATFORMTHEME
 # Load polkit
-exec-once = /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+# exec-once = /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec-once=/usr/lib/polkit-kde-authentication-agent-1
 # Start keyring deamon
 exec-once = /usr/bin/gnome-keyring-daemon --start --components = secrets,pkcs11
 # Handle workspaces when an extra monitor is connected
@@ -61,30 +62,34 @@ exec-once = /home/pieter/.config/hypr/scripts/launchWaybar.sh
 
 # Init wallpaper
 exec-once = swww init
-exec-once = swww img ~/.local/share/wallhaven/background.jpg
 # Start notification daemon
 exec-once = systemctl start --user dunst.service
 
 # Setup clipboard
 exec-once = wl-clip-persist --clipboard both
 
+exec-once = swww img /home/pieter/.local/share/wallhaven/background.jpg
 
 ########################
 ## Autostart programs ##
 ########################
 
+# Start easyeffect in the background
+exec-once = easyeffects --gapplication-service
+# Start Blueman
+exec-once = blueman-applet
+# Start NM applet
+exec-once = nm-applet
 # Start Element (Firefox PWA)
 exec-once = /usr/bin/firefoxpwa site launch 01HKNDZZG2KY9PKAWA0XBWZ0WJ
 # Start Webcord
 exec-once = [workspace 3 silent] webcord
-# Start easyeffect in the background
-exec-once = easyeffects --gapplication-service
 
 ##############
 ## Monitors ##
 ##############
 
-monitor = ,preferred,auto,auto
+monitor = DP-3,3440x1440@60,0x0,1
 
 ####################
 ## Program config ##
