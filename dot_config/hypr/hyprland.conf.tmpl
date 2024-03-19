@@ -1,8 +1,8 @@
 {{- if .nvidia }}
-###########################################
-## NVIDIA Settings                       ##
-## See https://wiki.hyprland.org/Nvidia/ ##
-###########################################
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+# NVIDIA Settings                       #
+# See https://wiki.hyprland.org/Nvidia/ #
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
 env = LIBVA_DRIVER_NAME,nvidia
 env = XDG_SESSION_TYPE,wayland
@@ -25,12 +25,13 @@ env = QT_QPA_PLATFORM,wayland;xcb
 env = QT_WAYLAND_DISABLE_WINDOWDECORATION,1
 env = QT_QPA_PLATFORMTHEME,qt5ct
 
-###############################
-## Startup Apps and Services ##
-###############################
+# ~~~~~~~~~~~~~~~~~~~~~~~~~ #
+# Startup Apps and Services #
+# ~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
 # Reload plugins and send notification if something goes wrong
 exec-once = hyprpm reload -n
+exec-once = hyprctl reload
 # plugin = /usr/lib/libhy3.so
 
 # Update dbus environment
@@ -49,30 +50,28 @@ exec-once = /usr/bin/gnome-keyring-daemon --start --components = secrets,pkcs11
 # Fix XDG Desktop portal
 exec-once = /home/pieter/.config/hypr/scripts/start_xdg_desktop_portal.sh
 
-############
-## Waybar ##
-############
+# ~~~~~~ #
+# Waybar #
+# ~~~~~~ #
 
 # Launch waybar
 exec-once = /home/pieter/.config/hypr/scripts/launchWaybar.sh
 
-################
-## Misc Setup ##
-################
+# ~~~~~~~~~~ #
+# Misc Setup #
+# ~~~~~~~~~~ #
 
 # Init wallpaper
-exec-once = swww init
+exec-once = swww init && swww img /home/pieter/.local/share/wallhaven/background.jpg
 # Start notification daemon
 exec-once = systemctl start --user dunst.service
 
 # Setup clipboard
 exec-once = wl-clip-persist --clipboard both
 
-exec-once = swww img /home/pieter/.local/share/wallhaven/background.jpg
-
-########################
-## Autostart programs ##
-########################
+# ~~~~~~~~~~~~~~~~~~ #
+# Autostart programs #
+# ~~~~~~~~~~~~~~~~~~ #
 
 # Start easyeffect in the background
 exec-once = easyeffects --gapplication-service
@@ -85,24 +84,24 @@ exec-once = /usr/bin/firefoxpwa site launch 01HKNDZZG2KY9PKAWA0XBWZ0WJ
 # Start Webcord
 exec-once = [workspace 3 silent] webcord
 
-##############
-## Monitors ##
-##############
+# ~~~~~~~~ #
+# Monitors #
+# ~~~~~~~~ #
 
 monitor = DP-3,3440x1440@60,0x0,1
 
-####################
-## Program config ##
-####################
+# ~~~~~~~~~~~~~~ #
+# Program config #
+# ~~~~~~~~~~~~~~ #
 
 $mainMod = ALT
 $terminal = kitty
 $fileManager = thunar
 $menu = wofi --show drun
 
-##############
-## Settings ##
-##############
+# ~~~~~~~~ #
+# Settings #
+# ~~~~~~~~ #
 
 debug {
   disable_logs = false
@@ -184,9 +183,9 @@ plugin {
   }
 }
 
-##############
-## Keybinds ##
-##############
+# ~~~~~~~~ #
+# Keybinds #
+# ~~~~~~~~ #
 
 # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
 bind = $mainMod, return, exec, $terminal
@@ -208,7 +207,7 @@ bind = $mainMod SHIFT, right, movewindow, r
 bind = $mainMod SHIFT, up, movewindow, u
 bind = $mainMod SHIFT, down, movewindow, d
 
-Tab control
+# Tab control
 bind = $mainMod, T, hy3:makegroup, tab, ephemeral
 bind = $mainMod SHIFT, T, hy3:changegroup, toggletab
 bindn = , mouse:272, hy3:focustab, mouse
@@ -275,11 +274,11 @@ bind = , XF86AudioPrev, exec, playerctl previous
 # Clipboard keybinds
 # bind = SUPER, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy
 
-##################
-## Window rules ##
-##################
+# ~~~~~~~~~~~~ #
+# Window rules #
+# ~~~~~~~~~~~~ #
 
-windowrulev2 = nomaximizerequest, class:.* # You'll probably like this.
+windowrulev2 = suppressevent maximize, class:.* # You'll probably like this.
 
 windowrulev2 = workspace 10,class:(steam_app*)
 
