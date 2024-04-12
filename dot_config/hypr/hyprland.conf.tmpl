@@ -41,8 +41,8 @@ exec-once = systemctl import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 # Import environment variables
 exec-once = systemctl --user import-environment QT_QPA_PLATFORMTHEME
 # Load polkit
-# exec-once = /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec-once=/usr/lib/polkit-kde-authentication-agent-1
+exec-once = /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+# exec-once=/usr/lib/polkit-kde-authentication-agent-1
 # Start keyring deamon
 exec-once = /usr/bin/gnome-keyring-daemon --start --components = secrets,pkcs11
 # Handle workspaces when an extra monitor is connected
@@ -62,9 +62,12 @@ exec-once = /home/pieter/.config/hypr/scripts/launchWaybar.sh
 # ~~~~~~~~~~ #
 
 # Init wallpaper
-exec-once = swww init && swww img /home/pieter/.local/share/wallhaven/background.jpg
+# exec-once = swww init && sleep 1 && swww img /home/pieter/.local/share/wallhaven/background.jpg
+exec-once = hyprpaper
 # Start notification daemon
 exec-once = systemctl start --user dunst.service
+# Start OSD service
+exec-once = avizo-service
 
 # Setup clipboard
 exec-once = wl-clip-persist --clipboard both
@@ -129,6 +132,7 @@ general {
     col.inactive_border = rgba(595959aa)
 
     layout = hy3
+    # layout = dwindle
 
     # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
     allow_tearing = false
@@ -262,10 +266,10 @@ bindm = $mainMod, mouse:272, movewindow
 bindm = $mainMod, mouse:273, resizewindow
 
 # Volume and Media Control
-bind = , XF86AudioRaiseVolume, exec, pamixer -i 5 
-bind = , XF86AudioLowerVolume, exec, pamixer -d 5 
-bind = , XF86AudioMicMute, exec, pamixer --default-source -m
-bind = , XF86AudioMute, exec, pamixer -t
+bind = , XF86AudioRaiseVolume, exec, volumectl -u up 
+bind = , XF86AudioLowerVolume, exec, volumectl -u down 
+bind = , XF86AudioMicMute, exec, volumectl -m toggle-mute
+bind = , XF86AudioMute, exec, volumectl toggle-mute
 bind = , XF86AudioPlay, exec, playerctl play-pause
 bind = , XF86AudioPause, exec, playerctl play-pause
 bind = , XF86AudioNext, exec, playerctl next
@@ -280,7 +284,10 @@ bind = , XF86AudioPrev, exec, playerctl previous
 
 windowrulev2 = suppressevent maximize, class:.* # You'll probably like this.
 
-windowrulev2 = workspace 10,class:(steam_app*)
+windowrulev2 = workspace 10, tile,class:(steam_app*)
+
+windowrulev2 = workspace 10,class:(Minecraft*)
+windowrulev2 = tile,class:(Minecraft*)
 
 # Move Element to workspace 3
 windowrulev2 = workspace 3 silent, class:(FFPWA-01HKNDZZG2KY9PKAWA0XBWZ0WJ)
