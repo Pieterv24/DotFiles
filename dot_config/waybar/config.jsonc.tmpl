@@ -21,6 +21,9 @@
         "pulseaudio",
         "network",
         "tray",
+{{- if .waybar.battery }}
+        "battery",
+{{- end }}
         "clock#date",
         "clock"
     ],
@@ -69,7 +72,21 @@
         "spacing": 8,
         "show-passive-items": true
     },
-
+{{- if .waybar.battery }}
+    "battery": {
+        "interval": 10,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "{icon} {capacity}%",
+        "format-icons": {
+            "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+            "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂅"]
+        }
+    },
+{{- end }}
     "clock": {
         // "format": "{:%d %b %Y - (%R)} \uf017 ",
         "timezone": "Europe/Amsterdam",
@@ -80,7 +97,6 @@
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         // "format-alt": " {:%d/%m}"
     },
-
     "clock#date": {
         // "format": "{:%d %b %Y - (%R)} \uf017 ",
         "timezone": "Europe/Amsterdam",
@@ -95,8 +111,8 @@
     "cpu": {
         // "format": "{usage}% ",
         // "tooltip": false
-        "format": "\uf4bc  {usage}%",
-        "format-alt": "\uf4bc  {avg_frequency} GHz",
+        "format": " {usage}%",
+        "format-alt": " {avg_frequency} GHz",
         "interval": 2
     },
 
@@ -184,7 +200,7 @@
     "custom/playerctl#play": {
         "format": "{icon} ",
         "return-type": "json",
-        "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+        "exec": "playerctl -a metadata --format '{\"text\": \"{{ "{{artist}}" }} - {{ "{{markup_escape(title)}}" }}\", \"tooltip\": \"{{ "{{playerName}}" }} : {{ "{{markup_escape(title)}}" }}\", \"alt\": \"{{ "{{status}}" }}\", \"class\": \"{{ "{{status}}" }}\"}' -F",
         "on-click": "playerctl play-pause",
         "on-scroll-up": "playerctl volume .05+",
         "on-scroll-down": "playerctl volume .05-",

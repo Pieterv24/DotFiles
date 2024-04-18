@@ -15,6 +15,9 @@ chezmoi:template:missing-key=invalid
   hy3 = {{ default false .hy3 }}
   hyprexpo = {{ default false .hyprexpo }}
 
+[data.waybar]
+  battery = {{ default false .waybar.battery }}
+
 [data.super_slicer]
   include = {{ default false .super_slicer.include }}
   pb_local_address = {{ (default "" .super_slicer.pb_local_address) | quote }}
