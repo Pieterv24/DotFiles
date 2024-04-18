@@ -32,4 +32,4 @@ fileUrl=`jq -r '.path' <<< $randomImage`
 echo $imagePath
 echo $fileUrl
 
-curl -o $imagePath "$fileUrl" && swww img $imagePath
+curl -o $imagePath "$fileUrl"
