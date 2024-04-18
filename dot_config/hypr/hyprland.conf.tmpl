@@ -32,7 +32,6 @@ env = QT_QPA_PLATFORMTHEME,qt5ct
 # Reload plugins and send notification if something goes wrong
 exec-once = hyprpm reload -n
 exec-once = hyprctl reload
-# plugin = /usr/lib/libhy3.so
 
 # Update dbus environment
 exec-once = /usr/bin/dbus-update-activation-environment --systemd --all
@@ -61,8 +60,6 @@ exec-once = /home/pieter/.config/hypr/scripts/launchWaybar.sh
 # Misc Setup #
 # ~~~~~~~~~~ #
 
-# Init wallpaper
-# exec-once = swww init && sleep 1 && swww img /home/pieter/.local/share/wallhaven/background.jpg
 exec-once = hyprpaper
 # Start notification daemon
 exec-once = systemctl start --user dunst.service
@@ -91,7 +88,12 @@ exec-once = [workspace 3 silent] webcord
 # Monitors #
 # ~~~~~~~~ #
 
-monitor = DP-3,3440x1440@60,0x0,1
+{{- /* Get monitor info from chezmoi config file */ -}}
+{{- range $index, $element := .monitors }}
+  {{- if and $element.name $element.resolution $element.position $element.scale }}
+monitor = {{ $element.name }},{{ $element.resolution }},{{ $element.position }},{{ $element.scale }}
+  {{- end }}
+{{- end}}
 
 # ~~~~~~~~~~~~~~ #
 # Program config #
@@ -131,8 +133,11 @@ general {
     col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
     col.inactive_border = rgba(595959aa)
 
+    {{- if .hy3 }}
     layout = hy3
-    # layout = dwindle
+    {{- else }}
+    layout = dwindle
+    {{- end }}
 
     # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
     allow_tearing = false
@@ -177,6 +182,7 @@ misc {
 }
 
 plugin {
+  {{- if .hy3 }}
   hy3 {
     # Docs: https://github.com/outfoxxed/hy3#configuration
     autotile {
@@ -185,6 +191,19 @@ plugin {
       trigger_height = 0    # default: 0
     }
   }
+  {{- end }}
+  {{- if .hyprexpo }}
+  hyprexpo {
+    columns = 3
+    gap_size = 5
+    bg_col = rgb(111111)
+    workspace_method = first 1 # [center/first] [workspace] e.g. first 1 or center m+1
+
+    enable_gesture = true # laptop touchpad, 4 fingers
+    gesture_distance = 300 # how far is the "max"
+    gesture_positive = true # positive = swipe down. Negative = swipe up.
+  }
+  {{- end }}
 }
 
 # ~~~~~~~~ #
@@ -211,6 +230,7 @@ bind = $mainMod SHIFT, right, movewindow, r
 bind = $mainMod SHIFT, up, movewindow, u
 bind = $mainMod SHIFT, down, movewindow, d
 
+{{- if .hy3 }}
 # Tab control
 bind = $mainMod, T, hy3:makegroup, tab, ephemeral
 bind = $mainMod SHIFT, T, hy3:changegroup, toggletab
@@ -220,6 +240,7 @@ bindn = , mouse:272, hy3:focustab, mouse
 bind = $mainMod, Z, hy3:changegroup, opposite
 bind = $mainMod, H, hy3:makegroup, h, ephemeral
 bind = $mainMod, V, hy3:makegroup, v, ephemeral
+{{- end }}
 
 # Switch workspaces with mainMod + [0-9]
 bind = $mainMod, 1, workspace, 1
@@ -232,6 +253,10 @@ bind = $mainMod, 7, workspace, 7
 bind = $mainMod, 8, workspace, 8
 bind = $mainMod, 9, workspace, 9
 bind = $mainMod, 0, workspace, 10
+
+{{- if .hyprexpo }}
+bind = $mainMod, tab, hyprexpo:expo, toggle
+{{- end }}
 
 # Move through existing workspaces with SUPER + L/R
 bind = SUPER, left, workspace, -1
