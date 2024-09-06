@@ -1,4 +1,8 @@
 {
+    // #########################
+    // #### VSCode Settings ####
+    // #########################
+
     // Window settings
     "window.menuBarVisibility": "toggle",
     "window.titleBarStyle": "native",
@@ -7,10 +11,12 @@
 
     // Terminal Settings
     "terminal.integrated.fontFamily": "'Cascadia Mono', 'Symbols Nerd Font Mono', 'monospace', monospace",
+    "terminal.integrated.fontSize": 14,
     "terminal.integrated.enableImages": true,
-    
+
     // Editor Settings
-    "editor.fontFamily": "'Cascadia Mono', 'Symbols Nerd Font Mono', 'monospace', monospace",
+    "editor.fontFamily": "'Source Code Pro', 'Symbols Nerd Font Mono', 'monospace', monospace",
+    "editor.fontWeight": "500",
     "editor.fontSize": 16,
     "editor.fontLigatures": false,
     "editor.renderLineHighlight": "all",
@@ -20,10 +26,13 @@
     "editor.cursorBlinking": "phase",
     "editor.linkedEditing": true,
 
+    // Explorer Settings
+    "explorer.confirmDragAndDrop": false,
+
     // Workbench Settings
     "workbench.startupEditor": "none",
     "workbench.iconTheme": "vscode-icons",
-    "workbench.colorTheme": "One Monokai",
+    "workbench.colorTheme": "GitHub Dark Default",
 
     // Git Settings
     "git.enableCommitSigning": true,
@@ -38,28 +47,76 @@
     // Telemetry settings
     "telemetry.telemetryLevel": "crash",
 
+    // Debug settings
+    "debug.allowBreakpointsEverywhere": true,
+
+    // Color settings
+    "editor.tokenColorCustomizations": {
+        "[GitHub Dark Default]": {
+            "strings": "#228833",
+            "textMateRules": [
+                {
+                    "name": "Recolor Java Annotations",
+                    "scope": [
+                        "storage.type.annotation.java",
+                        "meta.declaration.annotation.java"
+                    ],
+                    "settings": {
+                        "foreground": "#66ccee",
+                        "fontStyle": "bold"
+                    }
+                },
+                {
+                    "name": "Set java class colorTheme",
+                    "scope": [
+                        "entity.name.type.class",
+                        "entity.name.type.interface",
+                        "entity.name.type.enum",
+                        "storage.type.generic.java"
+                    ],
+                    "settings": {
+                        "foreground": "#24f42b"
+                    }
+                },
+                {
+                    "name": "variable colors",
+                    "scope": [
+                        "variable.other",
+                        "variable.parameter"
+                    ],
+                    "settings": {
+                        "foreground": "#e6edf3"
+                    }
+                }
+            ]
+        }
+    },
+
     // #######################
     // #### File Settings ####
     // #######################
     "files.associations": {
-        "**/.i3/config": "i3",
-        "**/i3/config": "i3",
         "*.ini.tmpl": "ini",
-        "*.toml.tmpl": "toml"
+        "*.toml.tmpl": "toml",
+        ".*ignore": "ignore",
+        "**/.i3/config": "i3",
+        "**/i3/config": "i3"
     },
 
     "files.exclude": {
-		"**/.git": false,
+        "**/.git": true,
         "**/.classpath": true,
         "**/.factorypath": true,
         "**/.project": true,
         "**/.settings": true
     },
 
-    "[jsonc]": {
+    "[jsonc][json]": {
         "editor.defaultFormatter": "vscode.json-language-features"
     },
-
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
 
     // ############################
     // #### Extension Settings ####
@@ -73,5 +130,8 @@
 
     // Gitlens
     "gitlens.showWelcomeOnInstall": false,
-    "gitlens.plusFeatures.enabled": false
+    "gitlens.plusFeatures.enabled": false,
+
+    // RedHat
+    "redhat.telemetry.enabled": false
 }

@@ -67,7 +67,7 @@ exec-once = systemctl start --user dunst.service
 exec-once = avizo-service
 
 # Setup clipboard
-exec-once = wl-clip-persist --clipboard both
+exec-once = wl-clip-persist --clipboard regular
 
 # ~~~~~~~~~~~~~~~~~~ #
 # Autostart programs #
@@ -80,9 +80,13 @@ exec-once = blueman-applet
 # Start NM applet
 exec-once = nm-applet
 # Start Element (Firefox PWA)
-exec-once = /usr/bin/firefoxpwa site launch 01HKNDZZG2KY9PKAWA0XBWZ0WJ
+# exec-once = /usr/bin/firefoxpwa site launch 01HKNDZZG2KY9PKAWA0XBWZ0WJ
+# Start Element
+exec-once = [workspace 3 silent] element-desktop
 # Start Webcord
 exec-once = [workspace 3 silent] webcord
+# Start Vesktop
+# exec-once = [workspace 3 silent] vesktop
 
 # ~~~~~~~~ #
 # Monitors #
@@ -242,6 +246,10 @@ bind = $mainMod, H, hy3:makegroup, h, ephemeral
 bind = $mainMod, V, hy3:makegroup, v, ephemeral
 {{- end }}
 
+# Take screenshot
+bind = $mainMod, C, exec, grimblast copy area
+bind = $mainMod SHIFT, C, exec, grimblast save area
+
 # Switch workspaces with mainMod + [0-9]
 bind = $mainMod, 1, workspace, 1
 bind = $mainMod, 2, workspace, 2
@@ -312,10 +320,15 @@ windowrulev2 = suppressevent maximize, class:.* # You'll probably like this.
 windowrulev2 = workspace 10, tile,class:(steam_app*)
 
 windowrulev2 = workspace 10,class:(Minecraft*)
+windowrulev2 = workspace 10,class:(minecraft*)
 windowrulev2 = tile,class:(Minecraft*)
+windowrulev2 = tile,class:(minecraft*)
 
 # Move Element to workspace 3
 windowrulev2 = workspace 3 silent, class:(FFPWA-01HKNDZZG2KY9PKAWA0XBWZ0WJ)
+
+# Move Vesktop to workspace 3
+windowrulev2 = workspace 3 silent, class:(vesktop)
 
 # Move Spotify to workspace 5
 windowrulev2 = workspace 5 silent, class:(Spotify)
