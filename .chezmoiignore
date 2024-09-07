@@ -1,2 +1,15 @@
 **/*.src.ini
 symlinks
+.chezmoiscripts/update_superslicer_from_wsl.sh
+{{ if eq .chezmoi.os "linux" }}
+{{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+.config/*
+!.config/powerline-go
+!.config/SuperSlicer
+.zsh-config/*
+!.zsh-config/aliasses
+!.zsh-config/powerline-go
+!.zsh-config/nvm
+!.chezmoiscripts/update_superslicer_from_wsl.sh
+{{   end }}
+{{ end }}
