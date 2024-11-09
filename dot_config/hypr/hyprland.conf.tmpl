@@ -65,6 +65,8 @@ exec-once = hyprpaper
 exec-once = systemctl start --user dunst.service
 # Start OSD service
 exec-once = avizo-service
+# HyprCurosr
+exec-once = hyprctl setcursor Breeze 24
 
 # Setup clipboard
 exec-once = wl-clip-persist --clipboard regular
@@ -105,7 +107,7 @@ monitor = {{ $element.name }},{{ $element.resolution }},{{ $element.position }},
 
 $mainMod = ALT
 $terminal = kitty
-$fileManager = thunar
+$fileManager = nemo
 $menu = wofi --show drun
 
 # ~~~~~~~~ #
@@ -128,6 +130,10 @@ input {
     sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
 }
 
+cursor {
+  no_hardware_cursors = true
+}
+
 general {
     # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
@@ -145,6 +151,8 @@ general {
 
     # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
     allow_tearing = false
+    resize_on_border = true
+    hover_icon_on_border = true
 }
 
 decoration {
@@ -338,3 +346,16 @@ windowrulev2 = opacity 0.0 override 0.0 override,class:^(xwaylandvideobridge)$
 windowrulev2 = noanim,class:^(xwaylandvideobridge)$
 windowrulev2 = nofocus,class:^(xwaylandvideobridge)$
 windowrulev2 = noinitialfocus,class:^(xwaylandvideobridge)$
+
+windowrule = tile,^(Microsoft-edge)$
+windowrule = tile,^(Brave-browser)$
+windowrule = tile,^(Chromium)$
+windowrule = float,^(pavucontrol)$
+windowrule = float,^(blueman-manager)$
+windowrule = float,^(nm-connection-editor)$
+windowrule = float,^(qalculate-gtk)$
+
+# Browser Picture in Picture
+windowrulev2 = float, title:^(Picture-in-Picture)$
+windowrulev2 = pin, title:^(Picture-in-Picture)$
+windowrulev2 = move 69.5% 4%, title:^(Picture-in-Picture)$
