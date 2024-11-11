@@ -4,17 +4,22 @@
 {{- if .gitSigning }}
 	signingkey = C44AEAD55BC105EB
 {{- end }}
+
 [init]
 	defaultBranch = master
+
 [color]
 	ui = auto
+
 [pull]
 	rebase = false
+
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
+
 {{ if .gitSigning -}}
 [commit]
 	gpgsign = true

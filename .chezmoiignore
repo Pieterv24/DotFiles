@@ -1,6 +1,13 @@
 **/*.src.ini
 symlinks
 .chezmoiscripts/update_superslicer_from_wsl.sh
+
+{{- if not .super_slicer.include -}}
+.config/SuperSlicer
+.config/SuperSlicer/
+.config/SuperSlicer/**/*
+{{- end -}}
+
 {{ if eq .chezmoi.os "linux" }}
 {{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
 .config/*
