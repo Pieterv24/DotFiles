@@ -1,361 +1,65 @@
-{{- if .nvidia }}
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
-# NVIDIA Settings                       #
-# See https://wiki.hyprland.org/Nvidia/ #
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+#  _   _                  _                 _  
+# | | | |_   _ _ __  _ __| | __ _ _ __   __| | 
+# | |_| | | | | '_ \| '__| |/ _` | '_ \ / _` | 
+# |  _  | |_| | |_) | |  | | (_| | | | | (_| | 
+# |_| |_|\__, | .__/|_|  |_|\__,_|_| |_|\__,_| 
+#        |___/|_|                              
+#  
 
-env = LIBVA_DRIVER_NAME,nvidia
-env = XDG_SESSION_TYPE,wayland
-env = GBM_BACKEND,nvidia-drm
-env = __GLX_VENDOR_LIBRARY_NAME,nvidia
-env = WLR_NO_HARDWARE_CURSORS,1
+# ----------------------------------------------------- 
+# Monitor
+# ----------------------------------------------------- 
+source = ~/.config/hypr/conf/monitor.conf
+
+# ----------------------------------------------------- 
+# Cursor
+# ----------------------------------------------------- 
+source = ~/.config/hypr/conf/cursor.conf
+
+{{- if .nvidia }}
+# ----------------------------------------------------- 
+# Nvidia
+# ----------------------------------------------------- 
+source = ~/.config/hypr/conf/nvidia.conf
 {{- end }}
 
-env = GDK_BACKEND,wayland,x11
-env = QT_QPA_PLATFORM,"wayland;xcb"
-env = SDL_VIDEODRIVER,wayland
-env = CLUTTER_BACKEND,wayland
+# ----------------------------------------------------- 
+# Environment
+# ----------------------------------------------------- 
+source = ~/.config/hypr/conf/environment.conf
 
-env = XDG_SESSION_DESKTOP,Hyprland
-env = XDG_CURRENT_DESKTOP,Hyprland
-env = XDG_SESSION_TYPE,wayland
+# ----------------------------------------------------- 
+# Keyboard
+# ----------------------------------------------------- 
+source = ~/.config/hypr/conf/keyboard.conf
 
-env = QT_AUTO_SCREEN_SCALE_FACTOR,1
-env = QT_QPA_PLATFORM,wayland;xcb
-env = QT_WAYLAND_DISABLE_WINDOWDECORATION,1
-env = QT_QPA_PLATFORMTHEME,qt5ct
+# ----------------------------------------------------- 
+# Autostart
+# ----------------------------------------------------- 
+source = ~/.config/hypr/conf/autostart.conf
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~ #
-# Startup Apps and Services #
-# ~~~~~~~~~~~~~~~~~~~~~~~~~ #
+# ----------------------------------------------------- 
+# Load configuration files
+# ----------------------------------------------------- 
+source = ~/.config/hypr/conf/window.conf
+source = ~/.config/hypr/conf/decoration.conf
+source = ~/.config/hypr/conf/layout.conf
+source = ~/.config/hypr/conf/plugin.conf
+source = ~/.config/hypr/conf/misc.conf
+source = ~/.config/hypr/conf/keybindings.conf
+source = ~/.config/hypr/conf/windowrules.conf
 
-# Reload plugins and send notification if something goes wrong
-exec-once = hyprpm reload -n
-exec-once = hyprctl reload
+# ----------------------------------------------------- 
+# Animation
+# ----------------------------------------------------- 
+source = ~/.config/hypr/conf/animations.conf
 
-# Update dbus environment
-exec-once = /usr/bin/dbus-update-activation-environment --systemd --all
+# ----------------------------------------------------- 
+# Environment for xdg-desktop-portal-hyprland
+# ----------------------------------------------------- 
+exec-once=dbus-update-activation-environment --systemd --all
 # Import enviroment variables
 exec-once = systemctl import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 # Import environment variables
 exec-once = systemctl --user import-environment QT_QPA_PLATFORMTHEME
-# Load polkit
-exec-once = /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-# exec-once=/usr/lib/polkit-kde-authentication-agent-1
-# Start keyring deamon
-exec-once = /usr/bin/gnome-keyring-daemon --start --components = secrets,pkcs11
-# Handle workspaces when an extra monitor is connected
-# exec-once = scripts/handle_monitor_connect.sh
-# Fix XDG Desktop portal
-exec-once = /home/pieter/.config/hypr/scripts/start_xdg_desktop_portal.sh
 
-# ~~~~~~ #
-# Waybar #
-# ~~~~~~ #
-
-# Launch waybar
-exec-once = /home/pieter/.config/hypr/scripts/launchWaybar.sh
-
-# ~~~~~~~~~~ #
-# Misc Setup #
-# ~~~~~~~~~~ #
-
-exec-once = hyprpaper
-# Start notification daemon
-exec-once = systemctl start --user dunst.service
-# Start OSD service
-exec-once = avizo-service
-# HyprCurosr
-exec-once = hyprctl setcursor Breeze 24
-
-# Setup clipboard
-exec-once = wl-clip-persist --clipboard regular
-
-# ~~~~~~~~~~~~~~~~~~ #
-# Autostart programs #
-# ~~~~~~~~~~~~~~~~~~ #
-
-# Start easyeffect in the background
-exec-once = easyeffects --gapplication-service
-# Start Blueman
-exec-once = blueman-applet
-# Start NM applet
-exec-once = nm-applet
-# Start Element (Firefox PWA)
-# exec-once = /usr/bin/firefoxpwa site launch 01HKNDZZG2KY9PKAWA0XBWZ0WJ
-# Start Element
-exec-once = [workspace 3 silent] element-desktop
-# Start Webcord
-exec-once = [workspace 3 silent] webcord
-# Start Vesktop
-# exec-once = [workspace 3 silent] vesktop
-
-# ~~~~~~~~ #
-# Monitors #
-# ~~~~~~~~ #
-
-{{- /* Get monitor info from chezmoi config file */ -}}
-{{- range $index, $element := .monitors }}
-  {{- if and $element.name $element.resolution $element.position $element.scale }}
-monitor = {{ $element.name }},{{ $element.resolution }},{{ $element.position }},{{ $element.scale }}
-  {{- end }}
-{{- end}}
-
-# ~~~~~~~~~~~~~~ #
-# Program config #
-# ~~~~~~~~~~~~~~ #
-
-$mainMod = ALT
-$terminal = kitty
-$fileManager = nemo
-$menu = wofi --show drun
-
-# ~~~~~~~~ #
-# Settings #
-# ~~~~~~~~ #
-
-debug {
-  disable_logs = false
-}
-
-# For all categories, see https://wiki.hyprland.org/Configuring/Variables/
-input {
-    kb_layout = us
-    # kb_variant = intl
-    
-    numlock_by_default = true
-
-    follow_mouse = 2
-
-    sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
-}
-
-cursor {
-  no_hardware_cursors = true
-}
-
-general {
-    # See https://wiki.hyprland.org/Configuring/Variables/ for more
-
-    gaps_in = 5
-    gaps_out = 20
-    border_size = 2
-    col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
-    col.inactive_border = rgba(595959aa)
-
-    {{- if .hy3 }}
-    layout = hy3
-    {{- else }}
-    layout = dwindle
-    {{- end }}
-
-    # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
-    allow_tearing = false
-    resize_on_border = true
-    hover_icon_on_border = true
-}
-
-decoration {
-    # See https://wiki.hyprland.org/Configuring/Variables/ for more
-
-    rounding = 10
-
-    blur {
-        enabled = true
-        size = 3
-        passes = 1
-        
-        vibrancy = 0.1696
-    }
-
-    drop_shadow = true
-    shadow_range = 4
-    shadow_render_power = 3
-    col.shadow = rgba(1a1a1aee)
-}
-
-animations {
-    enabled = true
-
-    # Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
-
-    bezier = myBezier, 0.05, 0.9, 0.1, 1.05
-
-    animation = windows, 1, 7, myBezier
-    animation = windowsOut, 1, 7, default, popin 80%
-    animation = border, 1, 10, default
-    animation = borderangle, 1, 8, default
-    animation = fade, 1, 7, default
-    animation = workspaces, 1, 6, default
-}
-
-misc {
-    # See https://wiki.hyprland.org/Configuring/Variables/ for more
-}
-
-plugin {
-  {{- if .hy3 }}
-  hy3 {
-    # Docs: https://github.com/outfoxxed/hy3#configuration
-    autotile {
-      enable = true         # default: false
-      trigger_width = 800   # default: 0
-      trigger_height = 0    # default: 0
-    }
-  }
-  {{- end }}
-  {{- if .hyprexpo }}
-  hyprexpo {
-    columns = 3
-    gap_size = 5
-    bg_col = rgb(111111)
-    workspace_method = first 1 # [center/first] [workspace] e.g. first 1 or center m+1
-
-    enable_gesture = true # laptop touchpad, 4 fingers
-    gesture_distance = 300 # how far is the "max"
-    gesture_positive = true # positive = swipe down. Negative = swipe up.
-  }
-  {{- end }}
-}
-
-# ~~~~~~~~ #
-# Keybinds #
-# ~~~~~~~~ #
-
-# Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-bind = $mainMod, return, exec, $terminal
-bind = $mainMod SHIFT, W, killactive,
-bind = $mainMod, M, exec, nwg-bar
-bind = $mainMod, E, exec, $fileManager
-bind = $mainMod, F, togglefloating,
-bind = $mainMod, space, exec, $menu
-
-# Move focus with mainMod + arrow keys
-bind = $mainMod, left, movefocus, l
-bind = $mainMod, right, movefocus, r
-bind = $mainMod, up, movefocus, u
-bind = $mainMod, down, movefocus, d
-
-# Move window with mainMod + Shift + Arrow keys
-bind = $mainMod SHIFT, left, movewindow, l
-bind = $mainMod SHIFT, right, movewindow, r
-bind = $mainMod SHIFT, up, movewindow, u
-bind = $mainMod SHIFT, down, movewindow, d
-
-{{- if .hy3 }}
-# Tab control
-bind = $mainMod, T, hy3:makegroup, tab, ephemeral
-bind = $mainMod SHIFT, T, hy3:changegroup, toggletab
-bindn = , mouse:272, hy3:focustab, mouse
-
-# Layout control
-bind = $mainMod, Z, hy3:changegroup, opposite
-bind = $mainMod, H, hy3:makegroup, h, ephemeral
-bind = $mainMod, V, hy3:makegroup, v, ephemeral
-{{- end }}
-
-# Take screenshot
-bind = $mainMod, C, exec, grimblast copy area
-bind = $mainMod SHIFT, C, exec, grimblast save area
-
-# Switch workspaces with mainMod + [0-9]
-bind = $mainMod, 1, workspace, 1
-bind = $mainMod, 2, workspace, 2
-bind = $mainMod, 3, workspace, 3
-bind = $mainMod, 4, workspace, 4
-bind = $mainMod, 5, workspace, 5
-bind = $mainMod, 6, workspace, 6
-bind = $mainMod, 7, workspace, 7
-bind = $mainMod, 8, workspace, 8
-bind = $mainMod, 9, workspace, 9
-bind = $mainMod, 0, workspace, 10
-
-{{- if .hyprexpo }}
-bind = $mainMod, tab, hyprexpo:expo, toggle
-{{- end }}
-
-# Move through existing workspaces with SUPER + L/R
-bind = SUPER, left, workspace, -1
-bind = SUPER, right, workspace, +1
-
-# Scroll through existing workspaces with mainMod + scroll
-bind = $mainMod, mouse_down, workspace, e+1
-bind = $mainMod, mouse_up, workspace, e-1
-
-# Scroll through existing workspaces with middle L/R action
-bind = , mouse_right, workspace, e+1
-bind = , mouse_left, workspace, e-1
-
-# Move active window to a workspace with mainMod + SHIFT + [0-9]
-bind = $mainMod SHIFT, 1, movetoworkspace, 1
-bind = $mainMod SHIFT, 2, movetoworkspace, 2
-bind = $mainMod SHIFT, 3, movetoworkspace, 3
-bind = $mainMod SHIFT, 4, movetoworkspace, 4
-bind = $mainMod SHIFT, 5, movetoworkspace, 5
-bind = $mainMod SHIFT, 6, movetoworkspace, 6
-bind = $mainMod SHIFT, 7, movetoworkspace, 7
-bind = $mainMod SHIFT, 8, movetoworkspace, 8
-bind = $mainMod SHIFT, 9, movetoworkspace, 9
-bind = $mainMod SHIFT, 0, movetoworkspace, 10
-
-# Special workspace (scratchpad)
-bind = $mainMod, S, togglespecialworkspace, magic
-bind = $mainMod SHIFT, S, movetoworkspace, special:magic
-
-# Move/resize windows with mainMod + LMB/RMB and dragging
-bindm = $mainMod, mouse:272, movewindow
-bindm = $mainMod, mouse:273, resizewindow
-
-# Volume and Media Control
-bind = , XF86AudioRaiseVolume, exec, volumectl -u up 
-bind = , XF86AudioLowerVolume, exec, volumectl -u down 
-bind = , XF86AudioMicMute, exec, volumectl -m toggle-mute
-bind = , XF86AudioMute, exec, volumectl toggle-mute
-bind = , XF86AudioPlay, exec, playerctl play-pause
-bind = , XF86AudioPause, exec, playerctl play-pause
-bind = , XF86AudioNext, exec, playerctl next
-bind = , XF86AudioPrev, exec, playerctl previous
-
-# Clipboard keybinds
-# bind = SUPER, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy
-
-# ~~~~~~~~~~~~ #
-# Window rules #
-# ~~~~~~~~~~~~ #
-
-windowrulev2 = suppressevent maximize, class:.* # You'll probably like this.
-
-windowrulev2 = workspace 10, tile,class:(steam_app*)
-
-windowrulev2 = workspace 10,class:(Minecraft*)
-windowrulev2 = workspace 10,class:(minecraft*)
-windowrulev2 = tile,class:(Minecraft*)
-windowrulev2 = tile,class:(minecraft*)
-
-# Move Element to workspace 3
-windowrulev2 = workspace 3 silent, class:(FFPWA-01HKNDZZG2KY9PKAWA0XBWZ0WJ)
-
-# Move Vesktop to workspace 3
-windowrulev2 = workspace 3 silent, class:(vesktop)
-
-# Move Spotify to workspace 5
-windowrulev2 = workspace 5 silent, class:(Spotify)
-
-# Hide xwaylandvideobridge windows
-windowrulev2 = opacity 0.0 override 0.0 override,class:^(xwaylandvideobridge)$
-windowrulev2 = noanim,class:^(xwaylandvideobridge)$
-windowrulev2 = nofocus,class:^(xwaylandvideobridge)$
-windowrulev2 = noinitialfocus,class:^(xwaylandvideobridge)$
-
-windowrule = tile,^(Microsoft-edge)$
-windowrule = tile,^(Brave-browser)$
-windowrule = tile,^(Chromium)$
-windowrule = float,^(pavucontrol)$
-windowrule = float,^(blueman-manager)$
-windowrule = float,^(nm-connection-editor)$
-windowrule = float,^(qalculate-gtk)$
-
-# Browser Picture in Picture
-windowrulev2 = float, title:^(Picture-in-Picture)$
-windowrulev2 = pin, title:^(Picture-in-Picture)$
-windowrulev2 = move 69.5% 4%, title:^(Picture-in-Picture)$
