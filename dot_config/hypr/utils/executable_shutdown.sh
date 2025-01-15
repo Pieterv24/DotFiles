@@ -1,3 +1,6 @@
+# Turn off RGBs
+openrgb --profile "Off"
+
 # close all client windows
 # required for graceful exit since many apps aren't good SIGNAL citizens
 HYPRCMDS=$(hyprctl -j clients | jq -j '.[] | "dispatch closewindow address:\(.address); "')

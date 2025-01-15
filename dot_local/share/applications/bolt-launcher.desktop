@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Terminal=false
+Name=Bolt
+GenericName=Bolt Launcher
+Comment=Third-party Jagex launcher
+Keywords=games;
+Exec=env SDL_VIDEODRIVER="x11" bolt
+Icon=bolt-launcher
+Categories=Game;
+StartupWMClass=BoltLauncher

@@ -1,0 +1,6 @@
+font-family = Cascadia Code
+font-size = 14
+
+theme = my_custom
+
+window-decoration = false
